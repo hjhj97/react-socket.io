@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ChatBallon from "./ChatBallon";
+import ChatBalloon from "./ChatBalloon";
 
 function Chat({ socket, username, room }) {
   const [text, setText] = useState("");
@@ -20,17 +20,26 @@ function Chat({ socket, username, room }) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        border: "1px solid black",
+        width: "300px",
+        margin: "100px  auto",
+        height: "400px",
+        position: "relative",
+      }}
+    >
       <div className="chat-header">
-        <p>Live Chat</p>
+        <h3 style={{ textAlign: "center" }}>Live Chat</h3>
       </div>
-      <div className="chat-body">
+      <div className="chat-body" style={{ height: "80%", overflowY: "scroll" }}>
         {messageHistory.map((msg) => (
-          <ChatBallon key={msg.id} msg={msg} />
+          <ChatBalloon key={msg.id} msg={msg} />
         ))}
       </div>
-      <div className="chat-footer">
+      <div className="chat-footer" style={{ position: "absolute", bottom: 0, width: "100%" }}>
         <input
+          style={{ width: "80%" }}
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
